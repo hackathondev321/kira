@@ -2,6 +2,8 @@
 
 KiraLaunch is a KIRAPAY-powered checkout and fulfillment layer for selling Solana-native utility to buyers on any chain. It targets the KIRAPAY Frontier hackathon by making cross-chain checkout the core product flow: users pay with their preferred token and chain through KIRAPAY, while the merchant settles in USDC on Solana and unlocks an access pass.
 
+Live demo: https://kira-ivory.vercel.app/
+
 ## Why This Matters
 
 Solana apps often lose buyers at checkout because users may hold funds on Ethereum, Polygon, BNB Chain, or another network. KiraLaunch removes that friction for real products like creator memberships, event tickets, and SaaS seats.
@@ -24,7 +26,7 @@ KIRAPAY is central to the solution:
 6. Click **Open hosted checkout** to continue payment.
 7. Click **Reconcile transactions** to show merchant operations and transaction status.
 
-The app runs in deterministic demo mode when no KIRAPAY API key is configured, so judges can still evaluate the UX and architecture. Add a real API key to generate live KIRAPAY payment links.
+The deployed version is configured for live KIRAPAY payment-link generation. A local demo fallback exists only so reviewers can inspect the UX without a merchant API key.
 
 ## KIRAPAY Integration
 
@@ -49,7 +51,7 @@ Create link payload:
     "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "decimals": 6
   },
-  "receiver": "8nKiraFrontierSolanaMerchant111111111111111111111",
+  "receiver": "your_solana_wallet_address",
   "name": "Borderless LaunchPass - Frontier Event Access",
   "redirectUrl": "http://localhost:3000/checkout/success?pass=event-access"
 }
@@ -81,9 +83,10 @@ KIRAPAY_API_KEY=your_kirapay_api_key
 KIRAPAY_API_BASE_URL=https://api.kira-pay.com/api
 KIRAPAY_DEMO_MODE=false
 SOLANA_SETTLEMENT_WALLET=your_solana_wallet
+KIRAPAY_TOKEN_OUT_JSON=
 ```
 
-Use `KIRAPAY_DEMO_MODE=true` if you want the app to generate a safe demo checkout URL without calling the live API.
+`KIRAPAY_TOKEN_OUT_JSON` is optional. Leave it empty to use the default Solana USDC settlement token configuration.
 
 ## Video Demo Script
 
@@ -101,39 +104,3 @@ Use `KIRAPAY_DEMO_MODE=true` if you want the app to generate a safe demo checkou
 - Mint compressed Solana access passes or write settlement receipts after completed payment events.
 - Add merchant dashboards for revenue analytics, refunds, and customer management.
 - Support multiple merchant settlement wallets and token preferences.
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

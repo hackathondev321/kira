@@ -12,7 +12,7 @@ export type LaunchPass = {
 };
 
 export const SOLANA_SETTLEMENT_WALLET =
-  "8nKiraFrontierSolanaMerchant111111111111111111111";
+  "your_solana_wallet_address";
 
 export const launchPasses: LaunchPass[] = [
   {

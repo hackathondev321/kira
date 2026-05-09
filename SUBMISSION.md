@@ -6,6 +6,8 @@ KiraLaunch helps Solana builders sell paid utility to users who may not hold Sol
 
 The product is designed for real adoption because it focuses on things people already pay for: memberships, tickets, and software seats. KIRAPAY removes the largest checkout barrier by abstracting chain, token, bridging, and gas complexity.
 
+Live demo: https://kira-ivory.vercel.app/
+
 ## Problem
 
 Crypto payments are still fragmented. A Solana merchant may want USDC on Solana, while a customer holds funds on another chain. Asking the customer to bridge, swap, and manage gas creates drop-off. This is especially painful for mainstream use cases where the user only wants the product, not a crypto operations tutorial.
@@ -16,7 +18,7 @@ KiraLaunch turns checkout into an intent:
 
 1. Merchant publishes a Solana-native product.
 2. Buyer chooses the product.
-3. Backend creates a KIRAPAY payment link with price, currency, Solana receiver, and redirect URL.
+3. Backend creates a live KIRAPAY payment link with price, Solana USDC settlement token, Solana receiver, and redirect URL.
 4. Buyer completes hosted KIRAPAY checkout from the chain and token they already use.
 5. KIRAPAY settles the merchant's funds on Solana.
 6. Webhook or reconciliation confirms completion and unlocks the Solana pass.
@@ -42,6 +44,7 @@ KIRAPAY:
 - `POST /link/generate` creates the hosted checkout URL.
 - `GET /wallet/transactions` supports merchant reconciliation.
 - API key is never exposed to the browser.
+- Live mode is enabled with `KIRAPAY_DEMO_MODE=false` on deployment.
 
 Solana:
 
@@ -68,9 +71,10 @@ The flow scales because checkout creation is stateless, KIRAPAY handles cross-ch
 
 ## Demo Notes
 
-The prototype supports two modes:
+The deployed prototype is configured for live mode:
 
-- Live mode with `KIRAPAY_API_KEY` and `KIRAPAY_DEMO_MODE=false`.
-- Demo mode with deterministic checkout and transaction data for judge review.
+- `KIRAPAY_API_KEY` is stored only in Vercel environment variables.
+- `KIRAPAY_DEMO_MODE=false` forces checkout creation through KIRAPAY's API.
+- Solana USDC is configured as the settlement token through `tokenOut`.
 
-This makes the project easy to run while still showing the exact production integration boundary.
+A local fallback mode remains available for reviewers without a merchant API key, but the submitted deployment is intended to demonstrate live KIRAPAY payment-link generation and transaction verification.
