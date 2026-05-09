@@ -40,9 +40,17 @@ type TransactionsResponse = {
   message?: string;
 };
 
+type CheckoutErrorResponse = {
+  message?: string;
+  payload?: CheckoutResponse["payload"];
+};
+
 export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
   const [selectedId, setSelectedId] = useState(passes[0]?.id);
   const [checkout, setCheckout] = useState<CheckoutResponse | null>(null);
+  const [attemptedPayload, setAttemptedPayload] = useState<
+    CheckoutResponse["payload"] | null
+  >(null);
   const [transactions, setTransactions] = useState<TransactionsResponse | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isReconciling, setIsReconciling] = useState(false);
@@ -62,9 +70,13 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ passId: selectedPass.id }),
       });
-      const data = (await res.json()) as CheckoutResponse | { message?: string };
+      const data = (await res.json()) as CheckoutResponse | CheckoutErrorResponse;
+      if ("payload" in data && data.payload) {
+        setAttemptedPayload(data.payload);
+      }
       if (!res.ok || !("checkoutUrl" in data)) throw new Error(data.message ?? "Unable to create checkout.");
       setCheckout(data);
+      setAttemptedPayload(data.payload);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unable to create checkout.");
     } finally {
@@ -222,7 +234,7 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
           </div>
           <pre className="overflow-x-auto p-5 font-mono text-xs leading-6 text-[#c8f461]">
             {JSON.stringify(
-              checkout?.payload ?? {
+              checkout?.payload ?? attemptedPayload ?? {
                 method: "POST",
                 url: "https://api.kira-pay.com/api/link/generate",
                 headers: { "x-api-key": "••••••••" },

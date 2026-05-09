@@ -6,11 +6,13 @@ import {
 import { getLaunchPass } from "@/lib/products";
 
 export async function POST(request: NextRequest) {
+  let payload: ReturnType<typeof buildCheckoutPayload> | null = null;
+
   try {
     const body = (await request.json()) as { passId?: string };
     const pass = getLaunchPass(body.passId ?? "");
     const origin = request.nextUrl.origin;
-    const payload = buildCheckoutPayload(pass, origin);
+    payload = buildCheckoutPayload(pass, origin);
     const checkout = await createKiraPayCheckout(payload);
 
     return NextResponse.json({
@@ -28,6 +30,6 @@ export async function POST(request: NextRequest) {
         ? error.message
         : "Unable to create a KIRAPAY checkout session.";
 
-    return NextResponse.json({ message }, { status: 502 });
+    return NextResponse.json({ message, payload }, { status: 502 });
   }
 }
