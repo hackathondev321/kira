@@ -42,11 +42,22 @@ Create link payload:
 ```json
 {
   "price": 0.02,
-  "customOrderId": "kiralaunch_event-access_1767980000000"
+  "originalPrice": 0.02,
+  "tokenOut": {
+    "chain": "solana",
+    "chainId": "101",
+    "symbol": "SOL",
+    "address": "So11111111111111111111111111111111111111112",
+    "decimals": 9
+  },
+  "Address": "your_solana_wallet_address",
+  "customOrderId": "kiralaunch_event-access_1767980000000",
+  "name": "Borderless LaunchPass - Frontier Event Access",
+  "redirectUrl": "https://kira-ivory.vercel.app/checkout/success?pass=event-access"
 }
 ```
 
-Settlement wallet and token are configured in the KIRAPAY merchant account. The app keeps this configuration server-side and sends only the payment amount plus order metadata to KIRAPAY.
+`Address` is the merchant's Solana settlement wallet. `tokenOut` is configurable with `KIRAPAY_TOKEN_OUT_JSON`, so the deployment can settle to SOL or a supported Solana SPL token.
 
 ## Architecture
 
