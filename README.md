@@ -39,7 +39,7 @@ Create link payload:
 
 ```json
 {
-  "price": 49,
+  "price": 0.02,
   "currency": "USDC",
   "receiver": "8nKiraFrontierSolanaMerchant111111111111111111111",
   "name": "Borderless LaunchPass - Frontier Event Access",

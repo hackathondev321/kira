@@ -52,14 +52,14 @@ const demoTransactions: KiraPayTransaction[] = [
     _id: "txn_demo_01",
     transaction_hash: "5YjKiraDemoSolanaReceipt9bS6pQmE7Xn1V2p",
     status: "COMPLETED",
-    amount: 49,
+    amount: 0.01,
     createdAt: "2026-05-09T14:08:00.000Z",
   },
   {
     _id: "txn_demo_02",
     transaction_hash: "7zFrontierCrossChainIntent4Qx8nSolanaSettle",
     status: "PENDING",
-    amount: 99,
+    amount: 0.02,
     createdAt: "2026-05-09T14:16:00.000Z",
   },
 ];

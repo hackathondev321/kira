@@ -21,7 +21,7 @@ export const launchPasses: LaunchPass[] = [
     tagline: "Sell gated Solana drops to fans on any chain.",
     description:
       "A one-month membership for creators who sell token-gated videos, design packs, and community perks without forcing fans to bridge first.",
-    price: 19,
+    price: 0.01,
     currency: "USDC",
     inventory: 124,
     solanaUtility: "Mints a compressed access pass and records revenue on Solana.",
@@ -34,7 +34,7 @@ export const launchPasses: LaunchPass[] = [
     tagline: "Cross-chain ticket checkout, Solana settlement.",
     description:
       "A global event ticket that accepts payments from EVM users while settling the merchant's treasury directly on Solana.",
-    price: 49,
+    price: 0.02,
     currency: "USDC",
     inventory: 68,
     solanaUtility: "Issues a Solana ticket receipt for check-in and refunds.",
@@ -47,7 +47,7 @@ export const launchPasses: LaunchPass[] = [
     tagline: "Crypto-native billing without chain lock-in.",
     description:
       "A starter SaaS subscription that lets teams pay in the asset they already hold while the operator receives predictable Solana USDC.",
-    price: 99,
+    price: 0.03,
     currency: "USDC",
     inventory: 32,
     solanaUtility: "Creates a Solana billing receipt and unlocks seat provisioning.",
