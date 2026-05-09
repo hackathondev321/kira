@@ -130,21 +130,35 @@ export function getSettlementWallet() {
 
 function getSettlementToken(): Record<string, string | number> {
   if (process.env.KIRAPAY_TOKEN_OUT_JSON) {
-    return JSON.parse(process.env.KIRAPAY_TOKEN_OUT_JSON) as Record<
+    const token = JSON.parse(process.env.KIRAPAY_TOKEN_OUT_JSON) as Record<
       string,
       string | number
     >;
+    return normalizeTokenOut(token);
   }
 
-  return {
+  return normalizeTokenOut({
     chain: "solana",
     chainId: "101",
     network: "mainnet-beta",
     symbol: "USDC",
     name: "USD Coin",
+    Address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     tokenAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     contractAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     decimals: 6,
+  });
+}
+
+function normalizeTokenOut(
+  token: Record<string, string | number>,
+): Record<string, string | number> {
+  const tokenAddress =
+    token.Address ?? token.address ?? token.tokenAddress ?? token.contractAddress;
+
+  return {
+    ...token,
+    ...(typeof tokenAddress === "string" ? { Address: tokenAddress } : {}),
   };
 }
