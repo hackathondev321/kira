@@ -92,6 +92,17 @@ export async function createKiraPayCheckout(
       data && "message" in data && data.message
         ? data.message
         : "KIRAPAY checkout request failed.";
+    const fallbackUrl = process.env.KIRAPAY_DASHBOARD_CHECKOUT_URL;
+
+    if (fallbackUrl) {
+      return {
+        checkoutUrl: fallbackUrl,
+        mode: "live",
+        payload,
+        message: `Using dashboard-created KIRAPAY checkout link because /link/generate returned: ${message}`,
+      };
+    }
+
     throw new Error(message);
   }
 
