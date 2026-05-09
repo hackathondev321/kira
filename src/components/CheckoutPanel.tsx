@@ -13,7 +13,7 @@ type CheckoutResponse = {
     price: number;
     originalPrice: number;
     tokenOut: Record<string, string | number>;
-    Address: string;
+    receiver: string;
     customOrderId: string;
     name: string;
     redirectUrl?: string;
@@ -246,9 +246,11 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
                     chainId: "101",
                     symbol: "SOL or USDC",
                     address: "configured token mint",
-                    decimals: "configured decimals",
                   },
-                  Address: "configured Solana settlement wallet",
+                  receiver: "configured Solana settlement wallet",
+                  type: "single_use",
+                  isViewAsCrypto: true,
+                  cryptoCurrency: "SOL or USDC",
                   customOrderId: `kiralaunch_${selectedPass.id}`,
                   name: `Borderless LaunchPass - ${selectedPass.name}`,
                   redirectUrl: "/checkout/success",
