@@ -12,6 +12,8 @@ type CheckoutResponse = {
   payload: {
     price: number;
     currency: string;
+    originalPrice: number;
+    tokenOut: string;
     receiver: string;
     name: string;
     redirectUrl?: string;
@@ -227,6 +229,8 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
                 body: {
                   price: selectedPass.price,
                   currency: selectedPass.currency,
+                  originalPrice: selectedPass.price,
+                  tokenOut: selectedPass.currency,
                   receiver: "<SOLANA_WALLET>",
                   name: `Borderless LaunchPass - ${selectedPass.name}`,
                   redirectUrl: "/checkout/success",

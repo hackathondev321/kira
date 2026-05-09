@@ -3,6 +3,8 @@ import { SOLANA_SETTLEMENT_WALLET, type LaunchPass } from "./products";
 export type CreateKiraPayLinkRequest = {
   price: number;
   currency: string;
+  originalPrice: number;
+  tokenOut: string;
   receiver: string;
   name: string;
   redirectUrl?: string;
@@ -32,6 +34,8 @@ export function buildCheckoutPayload(
   return {
     price: pass.price,
     currency: pass.currency,
+    originalPrice: pass.price,
+    tokenOut: pass.currency,
     receiver: process.env.SOLANA_SETTLEMENT_WALLET ?? SOLANA_SETTLEMENT_WALLET,
     name: `Borderless LaunchPass - ${pass.name}`,
     redirectUrl: redirectUrl.toString(),
