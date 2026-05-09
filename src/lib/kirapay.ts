@@ -4,7 +4,7 @@ export type CreateKiraPayLinkRequest = {
   price: number;
   currency: string;
   originalPrice: number;
-  tokenOut: string;
+  tokenOut: Record<string, string | number>;
   receiver: string;
   name: string;
   redirectUrl?: string;
@@ -35,7 +35,7 @@ export function buildCheckoutPayload(
     price: pass.price,
     currency: pass.currency,
     originalPrice: pass.price,
-    tokenOut: pass.currency,
+    tokenOut: getSolanaTokenOut(),
     receiver: process.env.SOLANA_SETTLEMENT_WALLET ?? SOLANA_SETTLEMENT_WALLET,
     name: `Borderless LaunchPass - ${pass.name}`,
     redirectUrl: redirectUrl.toString(),
@@ -115,4 +115,25 @@ function buildDemoCheckoutUrl(payload: CreateKiraPayLinkRequest) {
     demoUrl.searchParams.set("redirectUrl", payload.redirectUrl);
   }
   return demoUrl.toString();
+}
+
+function getSolanaTokenOut(): Record<string, string | number> {
+  if (process.env.KIRAPAY_TOKEN_OUT_JSON) {
+    return JSON.parse(process.env.KIRAPAY_TOKEN_OUT_JSON) as Record<
+      string,
+      string | number
+    >;
+  }
+
+  return {
+    chain: "solana",
+    chainId: 101,
+    network: "mainnet-beta",
+    symbol: "USDC",
+    name: "USD Coin",
+    address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    tokenAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    contractAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    decimals: 6,
+  };
 }

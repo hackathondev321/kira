@@ -13,7 +13,7 @@ type CheckoutResponse = {
     price: number;
     currency: string;
     originalPrice: number;
-    tokenOut: string;
+    tokenOut: Record<string, string | number>;
     receiver: string;
     name: string;
     redirectUrl?: string;
@@ -230,7 +230,13 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
                   price: selectedPass.price,
                   currency: selectedPass.currency,
                   originalPrice: selectedPass.price,
-                  tokenOut: selectedPass.currency,
+                  tokenOut: {
+                    chain: "solana",
+                    chainId: 101,
+                    symbol: selectedPass.currency,
+                    address: "EPjF...Dt1v",
+                    decimals: 6,
+                  },
                   receiver: "<SOLANA_WALLET>",
                   name: `Borderless LaunchPass - ${selectedPass.name}`,
                   redirectUrl: "/checkout/success",

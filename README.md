@@ -42,7 +42,13 @@ Create link payload:
   "price": 0.02,
   "currency": "USDC",
   "originalPrice": 0.02,
-  "tokenOut": "USDC",
+  "tokenOut": {
+    "chain": "solana",
+    "chainId": 101,
+    "symbol": "USDC",
+    "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "decimals": 6
+  },
   "receiver": "8nKiraFrontierSolanaMerchant111111111111111111111",
   "name": "Borderless LaunchPass - Frontier Event Access",
   "redirectUrl": "http://localhost:3000/checkout/success?pass=event-access"
