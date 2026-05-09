@@ -18,7 +18,7 @@ KiraLaunch turns checkout into an intent:
 
 1. Merchant publishes a Solana-native product.
 2. Buyer chooses the product.
-3. Backend creates a live KIRAPAY payment link with price, Solana USDC settlement token, Solana receiver, and redirect URL.
+3. Backend creates a live KIRAPAY payment link with price and order metadata, while settlement wallet/token remain configured in the merchant account.
 4. Buyer completes hosted KIRAPAY checkout from the chain and token they already use.
 5. KIRAPAY settles the merchant's funds on Solana.
 6. Webhook or reconciliation confirms completion and unlocks the Solana pass.
@@ -41,7 +41,7 @@ Backend:
 
 KIRAPAY:
 
-- `POST /link/generate` creates the hosted checkout URL.
+- `POST /link/generate` creates the hosted checkout URL from a server-side request.
 - `GET /wallet/transactions` supports merchant reconciliation.
 - API key is never exposed to the browser.
 - Live mode is enabled with `KIRAPAY_DEMO_MODE=false` on deployment.
@@ -75,6 +75,6 @@ The deployed prototype is configured for live mode:
 
 - `KIRAPAY_API_KEY` is stored only in Vercel environment variables.
 - `KIRAPAY_DEMO_MODE=false` forces checkout creation through KIRAPAY's API.
-- Solana USDC is configured as the settlement token through `tokenOut`.
+- Solana settlement is configured in the KIRAPAY merchant account, while the app sends payment amount and order metadata from the backend.
 
 A local fallback mode remains available for reviewers without a merchant API key, but the submitted deployment is intended to demonstrate live KIRAPAY payment-link generation and transaction verification.

@@ -2,10 +2,7 @@ import { SOLANA_SETTLEMENT_WALLET, type LaunchPass } from "./products";
 
 export type CreateKiraPayLinkRequest = {
   price: number;
-  currency: string;
-  originalPrice: number;
-  tokenOut: Record<string, string | number>;
-  receiver: string;
+  customOrderId: string;
   name: string;
   redirectUrl?: string;
 };
@@ -33,10 +30,7 @@ export function buildCheckoutPayload(
 
   return {
     price: pass.price,
-    currency: pass.currency,
-    originalPrice: pass.price,
-    tokenOut: getSolanaTokenOut(),
-    receiver: process.env.SOLANA_SETTLEMENT_WALLET ?? SOLANA_SETTLEMENT_WALLET,
+    customOrderId: `kiralaunch_${pass.id}_${Date.now()}`,
     name: `Borderless LaunchPass - ${pass.name}`,
     redirectUrl: redirectUrl.toString(),
   };
@@ -66,7 +60,10 @@ export async function createKiraPayCheckout(
       "content-type": "application/json",
       "x-api-key": apiKey,
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      price: payload.price,
+      customOrderId: payload.customOrderId,
+    }),
     cache: "no-store",
   });
 
@@ -108,8 +105,7 @@ export async function createKiraPayCheckout(
 function buildDemoCheckoutUrl(payload: CreateKiraPayLinkRequest) {
   const demoUrl = new URL("https://checkout.kira-pay.com/demo");
   demoUrl.searchParams.set("amount", String(payload.price));
-  demoUrl.searchParams.set("currency", payload.currency);
-  demoUrl.searchParams.set("receiver", payload.receiver);
+  demoUrl.searchParams.set("receiver", getSettlementWallet());
   demoUrl.searchParams.set("name", payload.name);
   if (payload.redirectUrl) {
     demoUrl.searchParams.set("redirectUrl", payload.redirectUrl);
@@ -117,23 +113,6 @@ function buildDemoCheckoutUrl(payload: CreateKiraPayLinkRequest) {
   return demoUrl.toString();
 }
 
-function getSolanaTokenOut(): Record<string, string | number> {
-  if (process.env.KIRAPAY_TOKEN_OUT_JSON) {
-    return JSON.parse(process.env.KIRAPAY_TOKEN_OUT_JSON) as Record<
-      string,
-      string | number
-    >;
-  }
-
-  return {
-    chain: "solana",
-    chainId: "101",
-    network: "mainnet-beta",
-    symbol: "USDC",
-    name: "USD Coin",
-    address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    tokenAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    contractAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    decimals: 6,
-  };
+export function getSettlementWallet() {
+  return process.env.SOLANA_SETTLEMENT_WALLET ?? SOLANA_SETTLEMENT_WALLET;
 }

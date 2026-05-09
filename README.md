@@ -42,20 +42,11 @@ Create link payload:
 ```json
 {
   "price": 0.02,
-  "currency": "USDC",
-  "originalPrice": 0.02,
-  "tokenOut": {
-    "chain": "solana",
-    "chainId": "101",
-    "symbol": "USDC",
-    "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    "decimals": 6
-  },
-  "receiver": "your_solana_wallet_address",
-  "name": "Borderless LaunchPass - Frontier Event Access",
-  "redirectUrl": "http://localhost:3000/checkout/success?pass=event-access"
+  "customOrderId": "kiralaunch_event-access_1767980000000"
 }
 ```
+
+Settlement wallet and token are configured in the KIRAPAY merchant account. The app keeps this configuration server-side and sends only the payment amount plus order metadata to KIRAPAY.
 
 ## Architecture
 

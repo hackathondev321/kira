@@ -11,10 +11,7 @@ type CheckoutResponse = {
   pass: LaunchPass;
   payload: {
     price: number;
-    currency: string;
-    originalPrice: number;
-    tokenOut: Record<string, string | number>;
-    receiver: string;
+    customOrderId: string;
     name: string;
     redirectUrl?: string;
   };
@@ -240,19 +237,10 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
                 headers: { "x-api-key": "••••••••" },
                 body: {
                   price: selectedPass.price,
-                  currency: selectedPass.currency,
-                  originalPrice: selectedPass.price,
-                  tokenOut: {
-                    chain: "solana",
-                    chainId: "101",
-                    symbol: selectedPass.currency,
-                    address: "EPjF...Dt1v",
-                    decimals: 6,
-                  },
-                  receiver: "<SOLANA_WALLET>",
-                  name: `Borderless LaunchPass - ${selectedPass.name}`,
-                  redirectUrl: "/checkout/success",
+                  customOrderId: `kiralaunch_${selectedPass.id}`,
                 },
+                settlement:
+                  "Configured in KIRAPAY merchant dashboard for Solana payout",
               },
               null,
               2,

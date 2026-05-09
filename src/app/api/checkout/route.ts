@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   buildCheckoutPayload,
   createKiraPayCheckout,
+  getSettlementWallet,
 } from "@/lib/kirapay";
 import { getLaunchPass } from "@/lib/products";
 
@@ -20,8 +21,8 @@ export async function POST(request: NextRequest) {
       ...checkout,
       settlement: {
         chain: "Solana",
-        token: payload.currency,
-        receiver: payload.receiver,
+        token: "Dashboard-configured settlement",
+        receiver: getSettlementWallet(),
       },
     });
   } catch (error) {
