@@ -69,8 +69,10 @@ export async function createKiraPayCheckout(
     body: JSON.stringify({
       price: payload.price,
       originalPrice: payload.originalPrice,
-      tokenOut: payload.tokenOut,
+      tokenOut: { ...payload.tokenOut, Address: payload.Address },
       Address: payload.Address,
+      address: payload.Address,
+      receiver: payload.Address,
       customOrderId: payload.customOrderId,
       name: payload.name,
       redirectUrl: payload.redirectUrl,
