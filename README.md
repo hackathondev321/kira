@@ -1,12 +1,12 @@
 # KiraLaunch
 
-KiraLaunch is a KIRAPAY-powered checkout and fulfillment layer for selling Solana-native utility to buyers on any chain. It targets the KIRAPAY Frontier hackathon by making cross-chain checkout the core product flow: users pay with their preferred token and chain through KIRAPAY, while the merchant settles in USDC on Solana and unlocks an access pass.
+KiraLaunch is a KIRAPAY-powered checkout and fulfillment layer for selling a Solana-settled test product to buyers through KIRAPAY. It targets the KIRAPAY Frontier hackathon by making cross-chain checkout the core product flow: users pay through KIRAPAY while the merchant settles in SOL on Solana.
 
 Live demo: https://kira-ivory.vercel.app/
 
 ## Why This Matters
 
-Solana apps often lose buyers at checkout because users may hold funds on Ethereum, Polygon, BNB Chain, or another network. KiraLaunch removes that friction for real products like creator memberships, event tickets, and SaaS seats.
+Solana apps often lose buyers at checkout because users may hold funds on another network or token. KiraLaunch removes that friction with a focused live test product that demonstrates hosted KIRAPAY checkout and Solana settlement.
 
 KIRAPAY is central to the solution:
 
@@ -19,7 +19,7 @@ KIRAPAY is central to the solution:
 ## Demo Flow
 
 1. Open the home page.
-2. Choose a launch pass: creator membership, event access, or SaaS seat.
+2. Choose the KIRAPAY Test Product.
 3. Click **Create KIRAPAY Checkout**.
 4. The Next.js backend calls KIRAPAY `POST /link/generate`.
 5. The UI displays the checkout URL, exact API payload, and Solana settlement receiver.
@@ -41,8 +41,8 @@ Create link payload:
 
 ```json
 {
-  "price": 0.02,
-  "originalPrice": 0.02,
+  "price": 2.05,
+  "originalPrice": 2.05,
   "tokenOut": {
     "chain": "solana",
     "chainId": "101",
@@ -51,9 +51,9 @@ Create link payload:
     "decimals": 9
   },
   "Address": "your_solana_wallet_address",
-  "customOrderId": "kiralaunch_event-access_1767980000000",
-  "name": "Borderless LaunchPass - Frontier Event Access",
-  "redirectUrl": "https://kira-ivory.vercel.app/checkout/success?pass=event-access"
+  "customOrderId": "kiralaunch_test-product_1767980000000",
+  "name": "Borderless LaunchPass - KIRAPAY Test Product",
+  "redirectUrl": "https://kira-ivory.vercel.app/checkout/success?pass=test-product"
 }
 ```
 
@@ -93,7 +93,7 @@ KIRAPAY_TOKEN_OUT_JSON=
 ## Video Demo Script
 
 1. Start with the problem: Solana merchants lose buyers when checkout requires a specific chain or token.
-2. Show KiraLaunch product cards and explain the real adoption targets: creators, events, SaaS.
+2. Show KiraLaunch product cards and explain the real adoption targets: the live KIRAPAY test product.
 3. Create a checkout link and show that the server created a KIRAPAY payment intent.
 4. Open the hosted checkout URL and explain any-chain payment with Solana settlement.
 5. Return to the app, reconcile transactions, and explain webhook-based unlocking.

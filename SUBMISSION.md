@@ -2,21 +2,21 @@
 
 ## Concept
 
-KiraLaunch helps Solana builders sell paid utility to users who may not hold Solana assets. A buyer can purchase a creator pass, event ticket, or SaaS seat from any supported chain through KIRAPAY. The merchant receives predictable USDC settlement on Solana, then the app unlocks the purchased utility.
+KiraLaunch helps Solana builders sell a paid test product to users through KIRAPAY. A buyer can open the hosted KIRAPAY checkout, complete payment, and the merchant receives SOL settlement on Solana.
 
-The product is designed for real adoption because it focuses on things people already pay for: memberships, tickets, and software seats. KIRAPAY removes the largest checkout barrier by abstracting chain, token, bridging, and gas complexity.
+The product is designed for real adoption because it focuses on things people already pay for: small paid products and checkout validation. KIRAPAY removes the largest checkout barrier by abstracting chain, token, bridging, and gas complexity.
 
 Live demo: https://kira-ivory.vercel.app/
 
 ## Problem
 
-Crypto payments are still fragmented. A Solana merchant may want USDC on Solana, while a customer holds funds on another chain. Asking the customer to bridge, swap, and manage gas creates drop-off. This is especially painful for mainstream use cases where the user only wants the product, not a crypto operations tutorial.
+Crypto payments are still fragmented. A Solana merchant may want SOL settlement, while a customer holds funds on another chain. Asking the customer to bridge, swap, and manage gas creates drop-off. This is especially painful for mainstream use cases where the user only wants the product, not a crypto operations tutorial.
 
 ## Solution
 
 KiraLaunch turns checkout into an intent:
 
-1. Merchant publishes a Solana-native product.
+1. Merchant publishes the KIRAPAY Test Product.
 2. Buyer chooses the product.
 3. Backend creates a live KIRAPAY payment link with price, order metadata, Solana settlement wallet, and configured Solana output token.
 4. Buyer completes hosted KIRAPAY checkout from the chain and token they already use.
@@ -28,7 +28,7 @@ KiraLaunch turns checkout into an intent:
 Frontend:
 
 - Next.js App Router UI.
-- Product catalog for three high-adoption verticals.
+- Single live test product for payment validation.
 - Checkout creation button that calls the local backend.
 - API evidence panel that displays the generated KIRAPAY payload.
 - Merchant reconciliation panel for transaction status.

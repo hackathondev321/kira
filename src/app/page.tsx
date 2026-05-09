@@ -42,8 +42,8 @@ export default function Home() {
               <span className="text-[#888]">Let buyers pay from any chain.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#888]">
-              KiraLaunch is a checkout layer for creators, event organisers, and SaaS teams.
-              One link, any token, any network — settled in USDC on Solana via KIRAPAY.
+              KiraLaunch is a checkout layer for Solana payments.
+              One live test product, one KIRAPAY checkout, settled in SOL through the merchant dashboard.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -80,15 +80,15 @@ export default function Home() {
       <section id="products" className="mx-auto max-w-[1320px] px-6 py-24 md:px-10">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">What you can sell</p>
-            <h2 className="text-4xl font-black tracking-tight">Three use cases, one checkout.</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">Live test product</p>
+            <h2 className="text-4xl font-black tracking-tight">One product. One live checkout.</h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-[#666]">
-            All products settle to your Solana wallet. Buyers never need to bridge or swap manually.
+            This demo product matches the live KIRAPAY payment link configured for Solana (SOL) settlement.
           </p>
         </div>
 
-        <div className="grid gap-px bg-white/8 overflow-hidden rounded-2xl md:grid-cols-3">
+        <div className="grid gap-px bg-white/8 overflow-hidden rounded-2xl md:grid-cols-1">
           {launchPasses.map((pass, i) => (
             <ProductCard key={pass.id} pass={pass} index={i} />
           ))}
@@ -117,7 +117,7 @@ export default function Home() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">Live demo</p>
           <h2 className="text-4xl font-black tracking-tight">KIRAPAY checkout, right here.</h2>
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#666]">
-            Pick a pass, hit the button. Our backend calls KIRAPAY{" "}
+            Pick the test product, hit the button. Our backend calls KIRAPAY{" "}
             <code className="rounded bg-white/8 px-1.5 py-0.5 font-mono text-[#c8f461]">
               POST /link/generate
             </code>{" "}

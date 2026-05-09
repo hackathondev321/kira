@@ -4,7 +4,7 @@ export type LaunchPass = {
   tagline: string;
   description: string;
   price: number;
-  currency: "USDC";
+  currency: "USD";
   inventory: number;
   solanaUtility: string;
   buyerValue: string;
@@ -16,43 +16,17 @@ export const SOLANA_SETTLEMENT_WALLET =
 
 export const launchPasses: LaunchPass[] = [
   {
-    id: "creator-studio",
-    name: "Creator Studio Pass",
-    tagline: "Sell gated Solana drops to fans on any chain.",
+    id: "test-product",
+    name: "KIRAPAY Test Product",
+    tagline: "A live checkout product for validating Solana settlement.",
     description:
-      "A one-month membership for creators who sell token-gated videos, design packs, and community perks without forcing fans to bridge first.",
-    price: 0.01,
-    currency: "USDC",
-    inventory: 124,
-    solanaUtility: "Mints a compressed access pass and records revenue on Solana.",
-    buyerValue: "Fans pay from their native wallet and receive access in seconds.",
-    merchantUseCase: "Creator subscriptions, paid communities, premium drops.",
-  },
-  {
-    id: "event-access",
-    name: "Frontier Event Access",
-    tagline: "Cross-chain ticket checkout, Solana settlement.",
-    description:
-      "A global event ticket that accepts payments from EVM users while settling the merchant's treasury directly on Solana.",
-    price: 0.02,
-    currency: "USDC",
-    inventory: 68,
-    solanaUtility: "Issues a Solana ticket receipt for check-in and refunds.",
-    buyerValue: "No chain switching at the door; scan, pay, and enter.",
-    merchantUseCase: "Conferences, hackathons, meetups, paid workshops.",
-  },
-  {
-    id: "saas-seat",
-    name: "AI SaaS Seat",
-    tagline: "Crypto-native billing without chain lock-in.",
-    description:
-      "A starter SaaS subscription that lets teams pay in the asset they already hold while the operator receives predictable Solana USDC.",
-    price: 0.03,
-    currency: "USDC",
-    inventory: 32,
-    solanaUtility: "Creates a Solana billing receipt and unlocks seat provisioning.",
-    buyerValue: "Teams can pay from Ethereum, BNB Chain, Polygon, or Solana.",
-    merchantUseCase: "SaaS subscriptions, API credits, usage-based products.",
+      "A small-value test product used to demonstrate a real KIRAPAY checkout flow with Solana (SOL) settlement.",
+    price: 2.05,
+    currency: "USD",
+    inventory: 1,
+    solanaUtility: "Completes a KIRAPAY-hosted payment and records the purchase for Solana fulfillment.",
+    buyerValue: "Buyers can complete payment through KIRAPAY without manually bridging or swapping first.",
+    merchantUseCase: "Live hackathon demo, payment-link validation, and transaction proof.",
   },
 ];
 
