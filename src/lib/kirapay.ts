@@ -127,7 +127,7 @@ function getSolanaTokenOut(): Record<string, string | number> {
 
   return {
     chain: "solana",
-    chainId: 101,
+    chainId: "101",
     network: "mainnet-beta",
     symbol: "USDC",
     name: "USD Coin",

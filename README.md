@@ -44,7 +44,7 @@ Create link payload:
   "originalPrice": 0.02,
   "tokenOut": {
     "chain": "solana",
-    "chainId": 101,
+    "chainId": "101",
     "symbol": "USDC",
     "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "decimals": 6

@@ -232,7 +232,7 @@ export function CheckoutPanel({ passes }: { passes: LaunchPass[] }) {
                   originalPrice: selectedPass.price,
                   tokenOut: {
                     chain: "solana",
-                    chainId: 101,
+                    chainId: "101",
                     symbol: selectedPass.currency,
                     address: "EPjF...Dt1v",
                     decimals: 6,
