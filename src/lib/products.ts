@@ -21,7 +21,7 @@ export const launchPasses: LaunchPass[] = [
     tagline: "A live checkout product for validating Solana settlement.",
     description:
       "A small-value test product used to demonstrate a real KIRAPAY checkout flow with Solana (SOL) settlement.",
-    price: 2.05,
+    price: 2.00,
     currency: "USD",
     inventory: 1,
     solanaUtility: "Completes a KIRAPAY-hosted payment and records the purchase for Solana fulfillment.",

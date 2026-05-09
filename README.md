@@ -41,8 +41,8 @@ Create link payload:
 
 ```json
 {
-  "price": 2.05,
-  "originalPrice": 2.05,
+  "price": 2.00,
+  "originalPrice": 2.00,
   "tokenOut": {
     "chain": "solana",
     "chainId": "101",
