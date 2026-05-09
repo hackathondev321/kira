@@ -1,148 +1,237 @@
 import { CheckoutPanel } from "@/components/CheckoutPanel";
 import { launchPasses } from "@/lib/products";
+import { ArrowUpRight, Zap, Shield, Globe } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#050814] text-white">
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute left-[-10%] top-[-10%] h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="absolute right-[-10%] top-[20%] h-[32rem] w-[32rem] rounded-full bg-violet-500/20 blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[30%] h-[28rem] w-[28rem] rounded-full bg-emerald-400/10 blur-3xl" />
-      </div>
+    <main className="min-h-screen bg-[#0c0c0e] text-[#f0ede8]">
+      {/* Nav */}
+      <header className="mx-auto flex max-w-[1320px] items-center justify-between px-6 py-6 md:px-10">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c8f461]">
+            <span className="text-xs font-black text-[#0c0c0e]">K</span>
+          </div>
+          <span className="font-semibold tracking-tight">KiraLaunch</span>
+        </div>
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-16 px-5 py-8 md:px-8 lg:px-10">
-        <nav className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-2xl bg-cyan-300 font-black text-slate-950">
-              KL
-            </div>
-            <div>
-              <p className="font-semibold">KiraLaunch</p>
-              <p className="text-sm text-slate-400">Powered by KIRAPAY</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2 text-sm text-slate-300">
-            <span className="rounded-full border border-white/10 px-4 py-2">
-              Non-custodial
-            </span>
-            <span className="rounded-full border border-white/10 px-4 py-2">
-              Intent-based
-            </span>
-            <span className="rounded-full border border-white/10 px-4 py-2">
-              Solana settlement
-            </span>
-          </div>
+        <nav className="hidden items-center gap-8 text-sm text-[#888] md:flex">
+          <a href="#products" className="transition hover:text-[#f0ede8]">Products</a>
+          <a href="#how" className="transition hover:text-[#f0ede8]">How it works</a>
+          <a href="#checkout" className="transition hover:text-[#f0ede8]">Checkout</a>
         </nav>
 
-        <section className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <a
+          href="https://docs.kira-pay.com"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-sm transition hover:border-[#c8f461] hover:text-[#c8f461]"
+        >
+          Docs <ArrowUpRight size={13} />
+        </a>
+      </header>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-[1320px] px-6 pb-24 pt-20 md:px-10 md:pt-28">
+        <div className="grid items-end gap-12 lg:grid-cols-[1fr_380px]">
           <div>
-            <div className="inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100">
-              Frontier Hackathon Submission
-            </div>
-            <h1 className="mt-6 max-w-4xl text-5xl font-black tracking-tight md:text-7xl">
-              Sell Solana utility to anyone, even if their funds live on another
-              chain.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              KiraLaunch is a checkout and fulfillment layer for creators, events,
-              and SaaS teams. Customers pay from any supported chain through
-              KIRAPAY, while merchants receive predictable USDC settlement on
-              Solana and unlock the purchased pass.
+            <p className="mb-6 inline-block rounded-full border border-[#c8f461]/30 bg-[#c8f461]/8 px-4 py-1.5 text-xs font-medium tracking-wide text-[#c8f461]">
+              Built for KIRAPAY Frontier Hackathon
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <Stat label="Chains abstracted" value="70+" />
-              <Stat label="Tokens supported" value="20K+" />
-              <Stat label="Merchant fee" value="1.5%" />
+            <h1 className="max-w-3xl text-[clamp(2.6rem,6vw,5.5rem)] font-black leading-[1.02] tracking-[-0.03em] text-[#f0ede8]">
+              Sell anything on Solana.{" "}
+              <span className="text-[#888]">Let buyers pay from any chain.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#888]">
+              KiraLaunch is a checkout layer for creators, event organisers, and SaaS teams.
+              One link, any token, any network — settled in USDC on Solana via KIRAPAY.
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href="#checkout"
+                className="rounded-full bg-[#c8f461] px-7 py-3.5 text-sm font-bold text-[#0c0c0e] transition hover:bg-[#d6f97a]"
+              >
+                Try checkout demo
+              </a>
+              <a
+                href="https://kira-pay.com"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-sm text-[#888] transition hover:text-[#f0ede8]"
+              >
+                Powered by KIRAPAY <ArrowUpRight size={14} />
+              </a>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.07] p-6 shadow-2xl shadow-black/40 backdrop-blur">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-200">
-              Why this wins
-            </p>
-            <div className="mt-5 space-y-4">
-              <PitchCard
-                title="KIRAPAY is the product, not an add-on"
-                body="The app cannot work without cross-chain checkout because the core pain point is selling Solana utility to users who do not hold Solana assets."
-              />
-              <PitchCard
-                title="Real adoption path"
-                body="Events, creator memberships, and SaaS seats are things users already pay for. KIRAPAY removes the bridge, token, and gas decision from checkout."
-              />
-              <PitchCard
-                title="Scalable architecture"
-                body="The frontend never sees the API key. A server route creates payment links, a webhook endpoint unlocks fulfillment, and transaction APIs reconcile merchant revenue."
-              />
-            </div>
+          {/* Side stats */}
+          <div className="space-y-3">
+            <StatCard icon={<Globe size={16} />} value="70+" label="Chains supported" />
+            <StatCard icon={<Zap size={16} />} value="20K+" label="Tokens accepted" />
+            <StatCard icon={<Shield size={16} />} value="1.5%" label="Flat merchant fee" />
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="mx-auto max-w-[1320px] border-t border-white/8 px-6 md:px-10" />
+
+      {/* Products */}
+      <section id="products" className="mx-auto max-w-[1320px] px-6 py-24 md:px-10">
+        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">What you can sell</p>
+            <h2 className="text-4xl font-black tracking-tight">Three use cases, one checkout.</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-[#666]">
+            All products settle to your Solana wallet. Buyers never need to bridge or swap manually.
+          </p>
+        </div>
+
+        <div className="grid gap-px bg-white/8 overflow-hidden rounded-2xl md:grid-cols-3">
+          {launchPasses.map((pass, i) => (
+            <ProductCard key={pass.id} pass={pass} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how" className="bg-[#111114]">
+        <div className="mx-auto max-w-[1320px] px-6 py-24 md:px-10">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">Under the hood</p>
+          <h2 className="mb-16 max-w-xl text-4xl font-black tracking-tight">
+            How a cross-chain intent becomes a Solana settlement.
+          </h2>
+
+          <div className="grid gap-0 md:grid-cols-4">
+            {steps.map((step, i) => (
+              <StepCard key={step.title} step={step} index={i} total={steps.length} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Checkout demo */}
+      <section id="checkout" className="mx-auto max-w-[1320px] px-6 py-24 md:px-10">
+        <div className="mb-14">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">Live demo</p>
+          <h2 className="text-4xl font-black tracking-tight">KIRAPAY checkout, right here.</h2>
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#666]">
+            Pick a pass, hit the button. Our backend calls KIRAPAY{" "}
+            <code className="rounded bg-white/8 px-1.5 py-0.5 font-mono text-[#c8f461]">
+              POST /link/generate
+            </code>{" "}
+            and returns a hosted checkout URL. Your API key never touches the browser.
+          </p>
+        </div>
 
         <CheckoutPanel passes={launchPasses} />
+      </section>
 
-        <section className="grid gap-4 md:grid-cols-4">
-          <ArchitectureStep
-            number="01"
-            title="Customer chooses pass"
-            body="Buyer selects a Solana-native product without needing to own SOL or USDC on Solana."
-          />
-          <ArchitectureStep
-            number="02"
-            title="Backend creates intent"
-            body="Next.js API route sends price, currency, receiver, name, and redirectUrl to KIRAPAY."
-          />
-          <ArchitectureStep
-            number="03"
-            title="KIRAPAY routes payment"
-            body="Hosted checkout accepts the buyer's wallet, chain, and token, then resolves the payment intent."
-          />
-          <ArchitectureStep
-            number="04"
-            title="Solana unlock"
-            body="Webhook or reconciliation confirms completion and unlocks the user pass on Solana."
-          />
-        </section>
-
-        <footer className="border-t border-white/10 py-8 text-sm text-slate-400">
-          Built for the KIRAPAY Frontier track: cross-chain checkout with Solana
-          settlement, real API integration, and a judge-ready demo mode.
-        </footer>
-      </div>
+      {/* Footer */}
+      <footer className="border-t border-white/8 bg-[#0c0c0e]">
+        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-6 px-6 py-8 md:px-10">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#c8f461]">
+              <span className="text-[10px] font-black text-[#0c0c0e]">K</span>
+            </div>
+            <span className="text-sm font-semibold text-[#888]">KiraLaunch</span>
+          </div>
+          <p className="text-xs text-[#444]">
+            Frontier Hackathon 2026 · KIRAPAY cross-chain track · Solana settlement
+          </p>
+          <a
+            href="https://github.com/hackathondev321/kira"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 text-xs text-[#555] transition hover:text-[#f0ede8]"
+          >
+            GitHub <ArrowUpRight size={11} />
+          </a>
+        </div>
+      </footer>
     </main>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+const steps = [
+  {
+    n: "01",
+    title: "Pick a pass",
+    body: "Buyer selects a Solana product. No need to hold SOL or bridge anything.",
+  },
+  {
+    n: "02",
+    title: "Backend creates intent",
+    body: "Next.js server calls KIRAPAY with price, currency, and your Solana wallet.",
+  },
+  {
+    n: "03",
+    title: "KIRAPAY routes payment",
+    body: "Hosted checkout accepts any token from any chain and resolves the intent.",
+  },
+  {
+    n: "04",
+    title: "Pass unlocked on Solana",
+    body: "Webhook confirms completion. The access pass is minted or unlocked.",
+  },
+];
+
+function StatCard({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
-      <p className="text-3xl font-black text-cyan-200">{value}</p>
-      <p className="mt-2 text-sm text-slate-400">{label}</p>
+    <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-5 py-4">
+      <div className="flex items-center gap-3 text-[#555]">
+        {icon}
+        <span className="text-sm text-[#666]">{label}</span>
+      </div>
+      <span className="text-xl font-black text-[#f0ede8]">{value}</span>
     </div>
   );
 }
 
-function PitchCard({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
-      <h2 className="font-semibold text-white">{title}</h2>
-      <p className="mt-2 leading-7 text-slate-300">{body}</p>
-    </div>
-  );
-}
-
-function ArchitectureStep({
-  number,
-  title,
-  body,
+function ProductCard({
+  pass,
+  index,
 }: {
-  number: string;
-  title: string;
-  body: string;
+  pass: { name: string; tagline: string; price: number; currency: string; description: string; merchantUseCase: string };
+  index: number;
+}) {
+  const accents = ["#c8f461", "#7dd3fc", "#fda4af"];
+  const accent = accents[index % accents.length];
+
+  return (
+    <div className="group bg-[#0c0c0e] p-8 transition-colors hover:bg-[#111114]">
+      <div
+        className="mb-6 inline-block rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em]"
+        style={{ background: `${accent}18`, color: accent }}
+      >
+        ${pass.price} {pass.currency}
+      </div>
+      <h3 className="mb-3 text-xl font-bold tracking-tight">{pass.name}</h3>
+      <p className="mb-6 text-sm leading-relaxed text-[#666]">{pass.tagline}</p>
+      <p className="border-t border-white/8 pt-5 text-xs leading-relaxed text-[#555]">
+        {pass.merchantUseCase}
+      </p>
+    </div>
+  );
+}
+
+function StepCard({
+  step,
+  index,
+  total,
+}: {
+  step: { n: string; title: string; body: string };
+  index: number;
+  total: number;
 }) {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
-      <p className="text-sm font-black text-cyan-200">{number}</p>
-      <h2 className="mt-4 text-xl font-semibold">{title}</h2>
-      <p className="mt-3 leading-7 text-slate-300">{body}</p>
+    <div
+      className={`p-8 ${index < total - 1 ? "border-b border-white/8 md:border-b-0 md:border-r" : ""}`}
+    >
+      <p className="mb-6 font-mono text-xs text-[#333]">{step.n}</p>
+      <h3 className="mb-3 text-lg font-bold">{step.title}</h3>
+      <p className="text-sm leading-relaxed text-[#666]">{step.body}</p>
     </div>
   );
 }

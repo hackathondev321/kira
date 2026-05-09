@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { getLaunchPass } from "@/lib/products";
 
 export default async function CheckoutSuccess({
@@ -10,32 +11,35 @@ export default async function CheckoutSuccess({
   const pass = getLaunchPass(params.pass ?? "");
 
   return (
-    <main className="min-h-screen bg-[#050814] px-5 py-10 text-white">
-      <section className="mx-auto flex min-h-[80vh] max-w-3xl flex-col justify-center">
-        <div className="rounded-[2rem] border border-emerald-300/20 bg-emerald-300/10 p-8 shadow-2xl shadow-emerald-950/30">
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-100">
-            Payment Confirmed
-          </p>
-          <h1 className="mt-4 text-5xl font-black tracking-tight">
-            Your {pass.name} is ready.
-          </h1>
-          <p className="mt-5 text-lg leading-8 text-slate-200">
-            In production, this page is reached after KIRAPAY checkout completes.
-            The backend webhook confirms payment status, then unlocks or mints the
-            Solana access pass for the buyer.
-          </p>
-          <div className="mt-6 rounded-3xl bg-black/30 p-5">
-            <p className="text-sm font-semibold text-cyan-100">Unlocked utility</p>
-            <p className="mt-2 text-slate-200">{pass.solanaUtility}</p>
-          </div>
-          <Link
-            className="mt-8 inline-flex rounded-full bg-cyan-300 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-200"
-            href="/"
-          >
-            Back to demo
-          </Link>
+    <main className="min-h-screen bg-[#0c0c0e] text-[#f0ede8]">
+      <div className="mx-auto flex min-h-screen max-w-[640px] flex-col items-start justify-center px-6 py-16">
+        <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-[#86efac]/15">
+          <CheckCircle2 size={22} className="text-[#86efac]" />
         </div>
-      </section>
+
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#555]">
+          Payment confirmed
+        </p>
+        <h1 className="text-4xl font-black tracking-tight">
+          Your {pass.name} is ready.
+        </h1>
+        <p className="mt-5 leading-relaxed text-[#777]">
+          KIRAPAY confirmed your cross-chain payment. In production, a webhook
+          triggers the backend to mint or unlock your Solana access pass.
+        </p>
+
+        <div className="mt-8 w-full rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.15em] text-[#555]">Unlocked</p>
+          <p className="text-sm leading-relaxed text-[#888]">{pass.solanaUtility}</p>
+        </div>
+
+        <Link
+          href="/"
+          className="mt-8 flex items-center gap-2 text-sm text-[#555] transition hover:text-[#f0ede8]"
+        >
+          <ArrowLeft size={14} /> Back to demo
+        </Link>
+      </div>
     </main>
   );
 }
